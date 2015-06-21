@@ -78,6 +78,21 @@
     return button;
 }
 
++(instancetype) centeredButtonOfSize:(CGSize) size
+                 withAttributedTitle:(NSAttributedString *) title
+                                icon:(UIImage*) icon
+                     backgroundColor:(UIColor *) color
+                             padding:(NSInteger) padding
+                            callback:(MGSwipeButtonCallback) callback
+{
+  MGSwipeButton* btn = [self buttonWithTitle:@"" icon:icon backgroundColor:color insets:UIEdgeInsetsMake(0, padding, 0, padding) callback:callback];
+  [btn setAttributedTitle:title forState: UIControlStateNormal];
+  btn.bounds = CGRectMake(0, 0, size.width, size.height);
+  [btn centerIconOverText];
+  return btn;
+}
+
+
 -(BOOL) callMGSwipeConvenienceCallback: (MGSwipeTableCell *) sender
 {
     if (_callback) {
